@@ -2,7 +2,7 @@
 <h3>
   <%= @post.title %>
 </h3>
-<%= render 'post_categories', post: @post %>
+<%= render 'categories/list_categories', categories: @post.categories %>
 
 
 <p>

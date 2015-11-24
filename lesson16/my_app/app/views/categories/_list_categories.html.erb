@@ -1,0 +1,10 @@
+<div class = "categories">
+  <% if !categories.empty? %>
+      <% str = '' %>
+      <% categories.each_with_index do |c, i| %>
+          <% str += c.title %>
+          <% str += ", " if i < categories.size - 1 %>
+      <% end %>
+      <%= str %>
+  <% end %>
+</div>
