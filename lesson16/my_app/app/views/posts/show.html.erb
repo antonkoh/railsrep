@@ -1,0 +1,28 @@
+
+<h3>
+  <%= @post.title %>
+</h3>
+<%= render 'post_categories', post: @post %>
+
+
+<p>
+  <%= @post.body %>
+</p>
+
+
+<% if @post.comments.empty? %>
+    <p><em>No comments yet. Leave your comment.</em></p>
+<% else %>
+    <h4>Comments</h4>
+    <% @post.comments.each do |c| %>
+        <%= render c %>
+    <% end %>
+<% end %>
+
+<h4>New Comment</h4>
+<%= render 'comments/form' %>
+
+
+
+
+
