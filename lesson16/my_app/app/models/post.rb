@@ -7,4 +7,13 @@ class Post < ActiveRecord::Base
   has_many :tag_posts
   has_many :tags, through: :tag_posts
   belongs_to :user
+
+  def categories_list
+    str = ''
+    categories.each_with_index do |c,i|
+      str += c.title
+      str += ', ' if i < categories.size - 1
+    end
+    return str
+  end
 end

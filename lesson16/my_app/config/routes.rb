@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'welcome#index'
 
-  get '/:id' => 'welcome#index', as: :category_filter
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

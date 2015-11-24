@@ -48,8 +48,8 @@
         <a class="navbar-brand" href="/">MyApp</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Posts", posts_path  %></li>
-            <li><%= link_to "Categories", categories_path  %></li>
+            <li><%= link_to "Posts admin", posts_path  %></li>
+            <li><%= link_to "Categories admin", categories_path  %></li>
           </ul>
         </div>
       </div>
@@ -66,7 +66,7 @@
             <ul class="nav nav-list">
               <li class="nav-header"><strong><%= link_to "All Categories", root_path %></strong></li>
               <% @categories.each do |c| %>
-                  <li><%= link_to c.title, category_filter_path(id: c.id)  %></li>
+                  <li><%= link_to c.title, c %></li>
               <% end %>
             </ul>
           </div><!--/.well -->

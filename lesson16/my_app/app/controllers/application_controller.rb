@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :load_menu_items, only: [:index, :show, :new, :edit]
+  before_action :load_menu_items
 
   protected
   def load_menu_items

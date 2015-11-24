@@ -1,0 +1,9 @@
+<h3>
+  <%= link_to post.title, post %>
+</h3>
+<%= render 'posts/post_categories', post: post %>
+<p>
+  <%= truncate(post.body, length: 100) %>
+  <br>
+  <%= link_to 'Read more...', post %>
+</p>
