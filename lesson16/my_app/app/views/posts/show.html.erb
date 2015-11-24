@@ -14,9 +14,7 @@
     <p><em>No comments yet. Leave your comment.</em></p>
 <% else %>
     <h4>Comments</h4>
-    <% @post.comments.each do |c| %>
-        <%= render c %>
-    <% end %>
+    <%= render @post.comments %>
 <% end %>
 
 <h4>New Comment</h4>
