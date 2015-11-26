@@ -1,0 +1,9 @@
+<p><em><%= comment.user.present? ? comment.user.email : "Anonymous" %> wrote:</em>
+  <br>
+  <%= comment.body %>
+  <br>
+  <% if comment.user.present? && comment.user == current_user %>
+    <em><%= link_to 'Edit', edit_comment_path(comment) %></em>   |
+    <em><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></em>
+  <% end %>
+</p>

@@ -1,0 +1,15 @@
+<p><div class="categories">
+  <% if !post.categories.empty? %>
+    <strong>Categories: </strong><%= post.categories_list %>
+  <% end %>
+</div>
+<div class="created_by">
+  <strong>Created by: </strong>
+  <%= post.user.present? ? post.user.email : "Anonymous" %>
+</div>
+<div>
+<% if post.user.present? && post.user == current_user %>
+    <em><%= link_to 'Edit post', edit_post_path(post) %></em>   |
+    <em><%= link_to 'Destroy post', post, method: :delete, data: { confirm: 'Are you sure?' } %></em>
+<% end %>
+</div></p>
