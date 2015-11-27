@@ -1,0 +1,26 @@
+
+<h3>
+  <%= @post.title %>
+</h3>
+<%= render 'posts/post_additional_info', post: @post %>
+
+
+<p>
+  <%= @post.body %>
+</p>
+
+
+<% if @post.comments.empty? %>
+    <p><em>No comments yet. Leave your comment.</em></p>
+<% else %>
+    <h4>Comments</h4>
+    <%= render @post.comments %>
+<% end %>
+
+<h4>New Comment</h4>
+<%= render 'comments/form' %>
+
+
+
+
+
