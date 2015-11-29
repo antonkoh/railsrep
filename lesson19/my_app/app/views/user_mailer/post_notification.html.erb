@@ -1,0 +1,13 @@
+
+
+<p><%case @reason
+       when :approved %>
+        Your post <strong><%= link_to @post.title, @post %></strong> has been approved and published.
+      <% when :declined %>
+        Your post <strong><%= link_to @post.title, @post %></strong> has been declined and returned to draft.
+      <% end %>
+
+
+
+
+

@@ -1,0 +1,48 @@
+
+<p><div class="status">
+  <% case
+      when post.draft? %>
+      This is an unpublished draft.
+   <% when post.moderated? %>
+      This post is under moderation.
+  <% end %>
+</div>
+<div class="categories">
+  <% if !post.categories.empty? %>
+    <strong>Categories: </strong><%= post.categories_list %>
+  <% end %>
+</div>
+
+<div class="created_by">
+  <strong>Author: </strong>
+  <%= post.user.present? ? post.user.email : "Anonymous" %>
+</div>
+<div>
+
+<% post_type = (post.draft? ? "draft" : "post") %>
+<% if post.available_for_edit_to?(current_user) %>
+    <em><%= link_to "Edit #{post_type}", edit_post_path(post) %></em>
+    <em>|  <%= link_to "Destroy #{post_type}", post, method: :delete, data: { confirm: 'Are you sure?' } %></em>
+    <% if user_signed_in? && current_user.is_admin? # ---- ADMIN   %>
+        <% if post.draft? || post.moderated? %>
+            <strong><em>|  <%= link_to "Approve & publish", publish_post_path(post), method: :put, data: { confirm: 'Are you sure?' } %></em></strong>
+        <% end %>
+        <% if post.approved? || post.moderated? %>
+            <% if post.user.present? %>
+                  <strong><em>|  <%= link_to "Decline & return to draft", return_to_draft_post_path(post), method: :put, data: { confirm: 'Are you sure?' } %></em></strong>
+            <% else %>
+              <em>|   (anonymous posts cannot be returned to draft)</em>
+            <% end %>
+        <% end %>
+
+    <% else # ---- NOT ADMIN %>
+      <% if post.draft? %>
+        <em>|  <%= link_to "Publish", publish_post_path(post), method: :put, data: { confirm: 'Are you sure?' } %></em>
+      <% else %>
+        <% if post.user.present? %>
+          <em>|  <%= link_to "Return to draft", return_to_draft_post_path(post), method: :put, data: { confirm: 'Are you sure?' } %></em>
+        <% end %>
+      <% end %>
+    <% end %>
+<% end %>
+</div></p>

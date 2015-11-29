@@ -1,0 +1,13 @@
+
+
+<%case @reason
+    when :approved %>
+      Your post '<%= @post.title %>' has been approved and published.
+     <% when :declined %>
+       Your post '<%= @post.title %>' has been declined and returned to draft.
+ <% end %>
+
+Follow this link to see the post: <%= post_url(@post) %>
+
+
+
