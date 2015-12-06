@@ -1,0 +1,11 @@
+<%= form_for([:admin,@category]) do |f| %>
+    <%= render 'common/errors', object: @category %>
+
+    <div class="field">
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t('.submit', action: (@category.new_record? ? t('common.create') : t('common.update')))%>
+    </div>
+<% end %>

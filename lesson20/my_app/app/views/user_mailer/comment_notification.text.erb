@@ -1,0 +1,17 @@
+
+
+<%case @reason
+    when :author
+    first_sentence= "Your post \'#{@post.title}\'"
+ when :subscriber
+    first_sentence= "The post \'#{@post.title}\' you have been subscribed to"
+ end
+ %>
+<%= first_sentence %> has received a<%= "n anonymous" if !@comment_author.present? %> comment <%= "from #{@comment_author}" if @comment_author.present? %>:
+
+  <%= @comment.body %>
+
+Follow this link to see the post: <%= post_url(@post) %>
+
+
+

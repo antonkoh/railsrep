@@ -1,0 +1,10 @@
+<%= form_for(@comment.new_record? ? [@post,@comment] : @comment) do |f| %>
+  <%= render 'common/errors', object: @comment %>
+
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit t('.submit', action: (@comment.new_record? ? t('common.create') : t('common.update')))%>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><% if user.is_active? %>
+              <%= link_to 'Deactivate', [:admin,user], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% else %>
+              (inactive)
+            <% end %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

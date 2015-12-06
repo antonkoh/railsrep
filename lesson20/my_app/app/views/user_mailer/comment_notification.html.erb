@@ -1,0 +1,16 @@
+
+<p><%case @reason
+       when :author %>
+        Your post <strong><%= link_to @post.title, @post %></strong>
+      <% when :subscriber %>
+        The post  <strong><%= link_to @post.title, @post %></strong> you have been subscribed to
+      <% end %>
+  has received a<%= "n anonymous" if !@comment_author.present? %>
+  comment<%= " from #{@comment_author}" if @comment_author.present?%>:</p>
+
+<blockquote>
+  <%= @comment.body %>
+</blockquote>
+
+
+

@@ -1,0 +1,50 @@
+<p><div class="status">
+  <% case
+       when post.draft? %>
+      <%= t('.unpublished_draft') %>
+  <% when post.moderated? %>
+      <%= t('.under_moderation') %>
+  <% end %>
+</div>
+
+<div class="categories">
+  <% if !post.categories.empty? %>
+      <strong><%= t('.categories') %>: </strong><%= post.categories_list %>
+  <% end %>
+</div>
+
+<div class="created_by">
+  <strong><%= t('.author') %>: </strong>
+  <%= post.user.present? ? post.user.email : t('.anonymous') %>
+</div>
+
+<div>
+
+<% post_type = (post.draft? ? t('.draft') : t('.post')) %>
+<% if post.available_for_edit_to?(current_user) %>
+    <em><%= link_to "#{t('common.edit')} #{post_type}", edit_post_path(post) %></em>
+    <em>|  <%= link_to "#{t('common.destroy')} #{post_type}", post, method: :delete, data: { confirm: t('common.are_you_sure') } %></em>
+    <% if user_signed_in? && current_user.is_admin? # ---- ADMIN   %>
+        <% if post.draft? || post.moderated? %>
+            <strong><em>|  <%= link_to t('.approve'), publish_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
+        <% end %>
+        <% if post.approved? || post.moderated? %>
+            <% if post.user.present? %>
+                  <strong><em>|  <%= link_to t('.decline'), return_to_draft_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em></strong>
+            <% else %>
+              <em>|   (<%= t('.unreturnable') %>)</em>
+            <% end %>
+        <% end %>
+
+    <% else # ---- NOT ADMIN %>
+      <% if post.draft? %>
+        <em>|  <%= link_to t('.publish'), publish_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
+      <% else %>
+        <% if post.user.present? %>
+          <em>|  <%= link_to t('.return_to_draft'), return_to_draft_post_path(post), method: :put, data: { confirm: t('common.are_you_sure') } %></em>
+        <% end %>
+      <% end %>
+    <% end %>
+<% end %>
+</div>
+</p>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : t('.app_name') %></title>
+    <%= csrf_meta_tags %>
+
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href=<%= root_path%>><%= t('.app_name') %></a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <% count = current_user.posts.approved.size
+                 if count > 0 %>
+                  <li><%= link_to "#{t('.header.published')}: #{count}", approved_posts_path %></li>
+              <% end %>
+              <% count = current_user.posts.draft.size
+                 if count > 0 %>
+                <li><%= link_to "#{t('.header.drafts')}: #{count}", draft_posts_path %></li>
+              <% end %>
+              <% count = current_user.posts.moderated.size
+                 if count > 0 %>
+                  <li><%= link_to "#{t('.header.moderated')}: #{count}", moderated_posts_path %></li>
+              <% end %>
+
+
+              <li>Email: <%= current_user.email %>
+              <%= link_to t('.header.out'), destroy_user_session_path, method: :delete %> </li>
+            <% else %>
+              <li><%= link_to t('.header.in'), new_user_session_path %> </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <% unless user_signed_in? && current_user.is_admin? %>
+                <li class="nav-header"><strong><%= link_to t('.sidebar.categories'), root_path %></strong></li>
+                <% @categories.each do |c| %>
+                    <li><%= link_to c.title, c %></li>
+                <% end %>
+
+            <% else %>
+                <li class="nav-header"><strong><%= t('.sidebar.administration')%></strong></li>
+                  <li><%= link_to t('.sidebar.admin.categories'), admin_categories_path  %></li>
+                  <li><%= link_to t('.sidebar.admin.users'), admin_users_path  %></li>
+
+                  <% count = Post.moderated.size
+                     if count > 0 %>
+                      <li><%= link_to "#{t('.sidebar.admin.require_moderation')}: #{count}", require_moderation_posts_path  %></li>
+                  <% end %>
+            <% end %>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+      <footer>
+        <p>&copy; <%= t('.footer.creator') %> 2015</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

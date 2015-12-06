@@ -1,0 +1,36 @@
+ru:
+  activerecord:
+    models:
+      post: "Пост"
+      comment: "Комментарий"
+      user: "Пользователь"
+      category: "Категория"
+      comment_subscription: "Подписка на комментарии"
+    attributes:
+      post:
+        title: "Заголовок"
+        body: "Текст"
+        user: "Автор"
+      comment:
+        body: "Текст"
+        post: "Пост"
+      category:
+        title: "Название"
+      user:
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+      comment_subscription:
+        post: "Пост"
+        user: "Подписчик"
+    errors:
+      messages:
+        blank: "не может быть пустым"
+        taken: "уже существует"
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "не совпадает с паролем"
+
+

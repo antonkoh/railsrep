@@ -1,0 +1,20 @@
+<h1><%= t('.title') %></h1>
+
+<table>
+
+  <tbody>
+  <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= link_to t('common.show'), category %></td>
+        <td><%= link_to t('common.edit'), edit_admin_category_path(category) %></td>
+        <td><%= link_to t('common.destroy'), [:admin,category], method: :delete, data: { confirm: t('common.are_you_sure') } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h3><%= t('.new')%></h3>
+<%= render 'form' %>

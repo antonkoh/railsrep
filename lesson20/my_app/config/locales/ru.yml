@@ -1,0 +1,116 @@
+ru:
+  common:
+    back: "Назад"
+    show: "Просмотр"
+    are_you_sure: "Вы уверены?"
+    create: "Добавить"
+    update: "Обновить"
+    edit: "Изменить"
+    destroy: "Удалить"
+    more: "Читать далее..."
+    errors:
+      notice: "Не удалось сохранить из-за следующих ошибок"
+
+  application:
+    controller:
+      notices:
+        user_state: "Изменилось состояние пользователя. Попробуйте ещё раз."
+        unauthorized: "Вы не имеете прав на выполнение этого действия."
+
+  layouts:
+    application:
+      app_name: "Мой блог"
+      header:
+        published: "Опубликовано вами"
+        drafts: "Ваши черновики"
+        moderated: "На модерации"
+        in: "Войти"
+        out: "Выйти"
+      sidebar:
+        categories: "Все категории"
+        administration: "Администратор"
+        admin:
+          categories: "Категории"
+          users: "Пользователи"
+          require_moderation: "Требуют модерации"
+      footer:
+        creator: "Антон Кох"
+
+  posts:
+    index:
+      new: "Новый пост"
+    new:
+      title: "Новый пост"
+    edit:
+      title: "Редактирование поста"
+    show:
+      subscribe: "Подписаться на комментарии"
+      no_comments: "Комментариев ещё нет. Оставьте свой"
+      comments: "Комментарии"
+      new_comment: "Новый комментарий"
+    post_additional_info:
+      unpublished_draft: "Это неопубликованный черовик."
+      under_moderation: "Пост на модерации."
+      categories: "Категории"
+      author: "Автор"
+      anonymous: "Анонимный"
+      draft: "черновик"
+      post: "пост"
+      approve: "Подтвердить и опубликовать"
+      decline: "Отклонить и вернуть в черновики"
+      publish: "Опубликовать"
+      return_to_draft: "Вернуть в черновики"
+      unreturnable: "анонимные посты нельзя вернуть в черновики"
+    form:
+      categories: "Категории"
+      publish_by_admin: "Посты администраторов (не являющиеся черновиками) публикуются без модерации."
+      draft: "Черновик"
+      submit: "%{action} пост"
+    controller:
+      headers:
+        drafts: "Черновики"
+        moderated: "Ваши посты на модерации"
+        published: "Вашу опубликованные посты"
+        require_moderation: "Требуют модерации"
+      notices:
+        draft: "Пост сохранён в черновики."
+        moderated: "Пост на модерации."
+        published: "Пост опубликован."
+        updated: "Пост успешно обновлён."
+        returned: "Пост возвращён в черновики"
+        unreturnable: "Анонимные посты нельзя вернуть в черновики."
+        destroyed: "Пост успешно удалён."
+        subscribed: "Вы успешно подписаны на комментарии."
+
+
+  comments:
+    edit:
+      title: "Редактирование комментария"
+      back_to_post: "Вернуться к посту"
+    form:
+      submit: "%{action} комментарий"
+    comment:
+      anonymous: "Аноним"
+      wrote: "пишет"
+    controller:
+      notices:
+        destroyed: "Комментарий успешно удалён."
+        updated: "Комментарий успешно обновлён."
+        created: "Комментарий успешно создан."
+
+  admin:
+    categories:
+      index:
+        title: "Категории"
+        new: "Новая категория"
+      edit:
+        title: "Редактирование категории"
+      form:
+        submit: "%{action} категорию"
+
+
+
+
+
+
+
